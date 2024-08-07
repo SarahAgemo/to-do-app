@@ -6,22 +6,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        python-version: [3.8, 3.9, 3.10, 3.11]  # Correct Python versions
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3  # Use the latest version of actions/checkout
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python 3.11
       uses: actions/setup-python@v4  # Use the latest version of actions/setup-python
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: 3.11  # Specify only Python 3.11
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install -r requirements.txt
         pip install pytest
 
     - name: Run tests
