@@ -4,21 +4,21 @@ on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        python-version: '3.11'
+        python-version: [3.8, 3.9, 3.10, 3.11]  # Correct format for the matrix strategy
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3  # Use a specific version for consistency
 
-    - name: Set up Python 3.11
-      uses: actions/setup-python@v5
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4  # Use the latest version of setup-python
       with:
-        python-version: '3.11'
+        python-version: ${{ matrix.python-version }}
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
