@@ -8,14 +8,14 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.8, 3.9, 3.10, 3.11]  # Correct format for the matrix strategy
+        python-version: [3.8, 3.9, 3.10, 3.11]  # Correct Python versions
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3  # Use a specific version for consistency
+      uses: actions/checkout@v3  # Use the latest version of actions/checkout
 
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4  # Use the latest version of setup-python
+      uses: actions/setup-python@v4  # Use the latest version of actions/setup-python
       with:
         python-version: ${{ matrix.python-version }}
 
